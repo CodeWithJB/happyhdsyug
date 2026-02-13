@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day, Tropa!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            width: 90%;
+            max-width: 360px;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            animation: float 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+
+        .emoji {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            font-size: 15px;
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 22px;
+            border: none;
+            border-radius: 25px;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+            position: relative;
+            overflow: visible;
+        }
+
+        button:hover {
+            background: #5a67d8;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            pointer-events: none;
+            animation: floatUp 1.2s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-80px) scale(1.5) rotate(20deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="emoji">😎🍻</div>
+
+        <h1>Happy Valentine's Day!</h1>
+
+        <p>
+            Hindi man tayo sweet…  
+            pero <span class="highlight">solid naman ang tropahan 😆</span>
+        </p>
+
+        <p>
+            Thank you for the laughs, kulitan, at walang sawang asaran 😂
+        </p>
+
+        <button id="loveBtn">
+            Send Tropa Love
+        </button>
+
+        <div class="footer">
+            Friendship > Love life 😌
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="funny.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const button = document.getElementById('loveBtn');
+        const colors = ['#ff4d6d', '#ff6f91', '#ffb3c1', '#ff85a2'];
+        const bgMusic = document.getElementById('bgMusic');
+
+        button.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+            }
+
+            for(let i = 0; i < 7; i++) {
+                createHeart();
+            }
+        });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.textContent = '💖';
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+            heart.style.left = Math.random() * (button.offsetWidth - 24) + 'px';
+            heart.style.top = '-10px';
+            heart.style.transform = `rotate(${Math.random() * 40 - 20}deg)`;
+            button.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 1200);
+        }
+    </script>
+
+</body>
+</html>
